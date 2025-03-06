@@ -64,33 +64,6 @@
 
 / {
     macros {
-        copy: copy {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LCTRL>
-                , <&macro_tap &kp C>
-                , <&macro_release &kp LCTRL>
-                ;
-        };
-        paste: paste {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LCTRL>
-                , <&macro_tap &kp V>
-                , <&macro_release &kp LCTRL>
-                ;
-        };
-        teams_mute: teams_mute {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LCTRL &kp LSHFT>
-                , <&macro_tap &kp M>
-                , <&macro_release &kp LCTRL &kp LSHFT>
-                ;
-        };
         windows_lock: windows_lock {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -119,15 +92,6 @@
                   compatible = "zmk,behavior-sensor-rotate-var";
                   #sensor-binding-cells = <2>;
                   bindings = <&kp>, <&kp>;
-              };
-
-              mo_ma: momentary_layer_macro {
-                  compatible = "zmk,behavior-hold-tap";
-                  #binding-cells = <2>;
-                  flavor = "hold-preferred";
-                  tapping-term-ms = <400>;
-                  quick-tap-ms = <200>;
-                  bindings = <&mo>, <&macro_name>;
               };
           };
 

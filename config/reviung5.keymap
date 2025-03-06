@@ -69,6 +69,11 @@
                   #sensor-binding-cells = <2>;
                   bindings = <&kp>, <&kp>;
               };
+              rot_rgb: sensor_rotate_rgb {
+                  compatible = "zmk,behavior-sensor-rotate-var";
+                  #sensor-binding-cells = <2>;
+                  bindings = <&rgb_ug>, <&rgb_ug>;
+              };
           };
 
         keymap {
@@ -91,7 +96,7 @@
                      &trans     &out OUT_TOG   &bt BT_PRV    &bt BT_NXT    &bt BT_CLR
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
-              sensor-bindings = <&rgb_ug RGB_BRI	RGB_BRI>;
+              sensor-bindings = <&rot_rgb RGB_BRI	RGB_BRI>;
             };
 
             control_layer {
@@ -101,7 +106,7 @@
                      &none     &trans   &kp LG(L)    &LC(LA(DEL))    &none
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
-              sensor-bindings = <&rgb_ug RGB_SPI	RGB_SPD>;
+              sensor-bindings = <&rot_rgb RGB_SPI	RGB_SPD>;
             };
 
             media_layer {
@@ -111,7 +116,7 @@
                       &kp C_RW     &kp C_PREV       &trans     &kp C_NEXT      &kp C_MUTE
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
-              sensor-bindings = <&rgb_ug RGB_HUI	RGB_HUD>;
+              sensor-bindings = <&rot_rgb RGB_HUI	RGB_HUD>;
             };
 
             rgblayer_layer {
@@ -121,7 +126,7 @@
                      &rgb_ug RGB_TOG     &rgb_ug RGB_EFF   &rgb_ug RGB_EFR    &trans    &trans
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
-              sensor-bindings = <&rgb_ug RGB_SAI	RGB_SAD>;
+              sensor-bindings = <&rot_rgb RGB_SAI	RGB_SAD>;
             };
 
             screen_layer {
@@ -131,7 +136,7 @@
                      &none     &none   &none    &none    &trans
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
-              sensor-bindings = <&kp C_BRI_UP	C_BRI_DN>;
+              sensor-bindings = <&rot_kp C_BRI_UP	C_BRI_DN>;
             };
         };
 };

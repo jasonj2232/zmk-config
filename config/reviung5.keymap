@@ -138,7 +138,7 @@
               display-name = "BASE";
               bindings = <
                 // ╭───────────────────────┬─────────────────────┬────────────────────┬─────────────────────┬─────────────╮
-                     &mo_ma BLE teams_mute   &mo_ma CONTROL copy   &mo_ma MEDIA paste   &lt RGBLAYER C_PP   &lt SCREEN C_MUTE
+                     &lt BLE LC(LS(M))   &lt CONTROL LC(C)   &lt MEDIA LC(V)   &lt RGBLAYER C_PP   &lt SCREEN C_MUTE
                 // ╰───────────────────────┴─────────────────────┴────────────────────┴─────────────────────┴─────────────╯
               >;
               sensor-bindings = <&rot_kp C_VOL_UP C_VOL_DN>;

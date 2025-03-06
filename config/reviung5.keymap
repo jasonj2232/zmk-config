@@ -104,7 +104,7 @@
               display-name = "CONTROL";
               bindings = <
                 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-                     &none     &trans   &kp LG(L)    &LC(LA(DEL))    &none
+                     &none     &trans   &kp LG(L)    &kp LC(LA(DEL))    &none
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
               sensor-bindings = <&rot_rgb RGB_SPI	RGB_SPD>;

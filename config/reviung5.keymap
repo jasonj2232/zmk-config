@@ -12,6 +12,10 @@
 
 #define BASE 0
 #define BLE 1
+#define CONTROL 2
+#define MEDIA 3
+#define RGBLAYER 4
+#define SCREEN 5
 
 &pinctrl {
     spi3_default: spi3_default {
@@ -59,17 +63,85 @@
 };
 
 / {
+    macros {
+        copy: copy {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL>
+                , <&macro_tap &kp C>
+                , <&macro_release &kp LCTRL>
+                ;
+        };
+        paste: paste {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL>
+                , <&macro_tap &kp V>
+                , <&macro_release &kp LCTRL>
+                ;
+        };
+        teams_mute: teams_mute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL &kp LSHFT>
+                , <&macro_tap &kp M>
+                , <&macro_release &kp LCTRL &kp LSHFT>
+                ;
+        };
+        windows_lock: windows_lock {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI>
+                , <&macro_tap &kp L>
+                , <&macro_release &kp LGUI>
+                ;
+        };
+        force: force {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL LALT>
+                , <&macro_tap &kp DEL>
+                , <&macro_release &kp LCTRL LALT>
+                ;
+        };
+    };
+};
+
+
+/ {
+        behaviors {
+              rot_kp: sensor_rotate_kp {
+                  compatible = "zmk,behavior-sensor-rotate-var";
+                  #sensor-binding-cells = <2>;
+                  bindings = <&kp>, <&kp>;
+              };
+
+              mo_ma: momentary_layer_macro {
+                  compatible = "zmk,behavior-hold-tap";
+                  #binding-cells = <2>;
+                  flavor = "hold-preferred";
+                  tapping-term-ms = <400>;
+                  quick-tap-ms = <200>;
+                  bindings = <&mo>, <&macro_name>;
+              };
+          };
+
         keymap {
             compatible = "zmk,keymap";
 
             base_layer {
               display-name = "BASE";
               bindings = <
-                // ╭─────────────┬──────────────┬──────────────────┬─────────────┬─────────────╮
-                     &mo BLE      &kp C_PREVIOUS  &kp C_PLAY_PAUSE    &kp C_NEXT   &kp C_MUTE
-                // ╰─────────────┴──────────────┴──────────────────┴─────────────┴─────────────╯
+                // ╭───────────────────────┬─────────────────────┬────────────────────┬─────────────────────┬─────────────╮
+                     &mo_ma BLE teams_mute   &mo_ma CONTROL copy   &mo_ma MEDIA paste   &mo_ma RGBLAYER C_PP   &lt SCREEN C_MUTE
+                // ╰───────────────────────┴─────────────────────┴────────────────────┴─────────────────────┴─────────────╯
               >;
-              sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+              sensor-bindings = <&rot_kp C_VOL_UP C_VOL_DN>;
             };
 
             ble_layer {
@@ -79,6 +151,47 @@
                      &trans     &out OUT_TOG   &bt BT_PRV    &bt BT_NXT    &bt BT_CLR
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
+              sensor-bindings = <&rgb_ug RGB_BRI	RGB_BRI>;
+            };
+
+            control_layer {
+              display-name = "CONTROL";
+              bindings = <
+                // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                     &none     &trans   &windows_lock    &force    &none
+                // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
+              >;
+              sensor-bindings = <&rgb_ug RGB_SPI	RGB_SPD>;
+            };
+
+            media_layer {
+              display-name = "MEDIA";
+              bindings = <
+                // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                      &kp C_RW     &kp C_PREV       &trans     &kp C_NEXT      &kp C_MUTE
+                // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
+              >;
+              sensor-bindings = <&rgb_ug RGB_HUI	RGB_HUD>;
+            };
+
+            rgblayer_layer {
+              display-name = "RGBLAYER";
+              bindings = <
+                // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                     &rgb_ug RGB_TOG     &rgb_ug RGB_EFF   &rgb_ug RGB_EFR    &trans    &trans
+                // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
+              >;
+              sensor-bindings = <&rgb_ug RGB_SAI	RGB_SAD>;
+            };
+
+            screen_layer {
+              display-name = "SCREEN";
+              bindings = <
+                // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                     &none     &none   &none    &none    &trans
+                // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
+              >;
+              sensor-bindings = <&kp C_BRI_UP	&C_BRI_DN>;
             };
         };
 };

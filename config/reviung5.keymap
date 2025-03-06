@@ -70,10 +70,25 @@
                   #sensor-binding-cells = <2>;
                   bindings = <&kp>, <&kp>;
               };
-              rot_rgb: sensor_rotate_rgb {
-                  compatible = "zmk,behavior-sensor-rotate-var";
-                  #sensor-binding-cells = <2>;
-                  bindings = <&rgb_ug>, <&rgb_ug>;
+              encoder_rgb_brightness: encoder_rgb_brightness {
+                  compatible = "zmk,behavior-sensor-rotate";
+                  #sensor-binding-cells = <0>;
+                  bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+              };
+              encoder_rgb_speed: encoder_rgb_speed {
+                  compatible = "zmk,behavior-sensor-rotate";
+                  #sensor-binding-cells = <0>;
+                  bindings = <&rgb_ug RGB_SPI>, <&rgb_ug RGB_SPD>;
+              };
+              encoder_rgb_saturation: encoder_rgb_saturation {
+                  compatible = "zmk,behavior-sensor-rotate";
+                  #sensor-binding-cells = <0>;
+                  bindings = <&rgb_ug RGB_SAI>, <&rgb_ug RGB_SAD>;
+              };
+              encoder_rgb_hue: encoder_rgb_hue {
+                  compatible = "zmk,behavior-sensor-rotate";
+                  #sensor-binding-cells = <0>;
+                  bindings = <&rgb_ug RGB_HUI>, <&rgb_ug RGB_HUD>;
               };
           };
 
@@ -97,7 +112,7 @@
                      &trans     &out OUT_TOG   &bt BT_PRV    &bt BT_NXT    &bt BT_CLR
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
-              sensor-bindings = <&rot_rgb RGB_BRI	RGB_BRI>;
+              sensor-bindings = <&encoder_rgb_brightness>;
             };
 
             control_layer {
@@ -107,7 +122,7 @@
                      &none     &trans   &kp LG(L)    &kp LC(LA(DEL))    &none
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
-              sensor-bindings = <&rot_rgb RGB_SPI	RGB_SPD>;
+              sensor-bindings = <&encoder_rgb_speed>;
             };
 
             media_layer {
@@ -117,7 +132,7 @@
                       &kp C_RW     &kp C_PREV       &trans     &kp C_NEXT      &kp C_MUTE
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
-              sensor-bindings = <&rot_rgb RGB_HUI	RGB_HUD>;
+              sensor-bindings = <&encoder_rgb_hue>;
             };
 
             rgblayer_layer {
@@ -127,7 +142,7 @@
                      &rgb_ug RGB_TOG     &rgb_ug RGB_EFF   &rgb_ug RGB_EFR    &trans    &trans
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
-              sensor-bindings = <&rot_rgb RGB_SAI	RGB_SAD>;
+              sensor-bindings = <&encoder_rgb_saturation>;
             };
 
             screen_layer {

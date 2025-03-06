@@ -63,30 +63,6 @@
 };
 
 / {
-    macros {
-        windows_lock: windows_lock {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LGUI>
-                , <&macro_tap &kp L>
-                , <&macro_release &kp LGUI>
-                ;
-        };
-        force: force {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LCTRL LALT>
-                , <&macro_tap &kp DEL>
-                , <&macro_release &kp LCTRL LALT>
-                ;
-        };
-    };
-};
-
-
-/ {
         behaviors {
               rot_kp: sensor_rotate_kp {
                   compatible = "zmk,behavior-sensor-rotate-var";
@@ -122,7 +98,7 @@
               display-name = "CONTROL";
               bindings = <
                 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-                     &none     &trans   &windows_lock    &force    &none
+                     &none     &trans   &kp LG(L)    &LC(LA(DEL))    &none
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
               sensor-bindings = <&rgb_ug RGB_SPI	RGB_SPD>;
@@ -155,7 +131,7 @@
                      &none     &none   &none    &none    &trans
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
-              sensor-bindings = <&kp C_BRI_UP	&C_BRI_DN>;
+              sensor-bindings = <&kp C_BRI_UP	C_BRI_DN>;
             };
         };
 };

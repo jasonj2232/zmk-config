@@ -54,5 +54,13 @@
                 &bt BT_SEL 2  &bt BT_SEL 5  &kp PAUSE_BREAK  &sys_reset              &trans                  &bootloader             &kp C_BRI_DN  &kp C_VOL_DN  &kp C_BRI_UP
 			>;
 		};
+
+        extra1 {
+            status = "reserved";
+        };
+
+        extra2 {
+            status = "reserved";
+        };
 	};
 };

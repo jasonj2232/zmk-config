@@ -73,22 +73,22 @@
               encoder_rgb_brightness: encoder_rgb_brightness {
                   compatible = "zmk,behavior-sensor-rotate";
                   #sensor-binding-cells = <0>;
-                  bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+                  bindings = <&rgb_ug RGB_BRD>, <&rgb_ug RGB_BRI>;
               };
               encoder_rgb_speed: encoder_rgb_speed {
                   compatible = "zmk,behavior-sensor-rotate";
                   #sensor-binding-cells = <0>;
-                  bindings = <&rgb_ug RGB_SPI>, <&rgb_ug RGB_SPD>;
+                  bindings = <&rgb_ug RGB_SPD>, <&rgb_ug RGB_SPI>;
               };
               encoder_rgb_saturation: encoder_rgb_saturation {
                   compatible = "zmk,behavior-sensor-rotate";
                   #sensor-binding-cells = <0>;
-                  bindings = <&rgb_ug RGB_SAI>, <&rgb_ug RGB_SAD>;
+                  bindings = <&rgb_ug RGB_SAD>, <&rgb_ug RGB_SAI>;
               };
               encoder_rgb_hue: encoder_rgb_hue {
                   compatible = "zmk,behavior-sensor-rotate";
                   #sensor-binding-cells = <0>;
-                  bindings = <&rgb_ug RGB_HUI>, <&rgb_ug RGB_HUD>;
+                  bindings = <&rgb_ug RGB_HUD>, <&rgb_ug RGB_HUI>;
               };
           };
 
@@ -102,7 +102,7 @@
                      &lt BLE LC(LS(M))   &lt CONTROL LC(C)   &lt MEDIA LC(V)   &lt RGBLAYER C_PP   &lt SCREEN C_MUTE
                 // ╰───────────────────────┴─────────────────────┴────────────────────┴─────────────────────┴─────────────╯
               >;
-              sensor-bindings = <&rot_kp C_VOL_UP C_VOL_DN>;
+              sensor-bindings = <&rot_kp C_VOL_DN C_VOL_UP>;
             };
 
             ble_layer {
@@ -152,7 +152,7 @@
                      &none     &none   &none    &none    &trans
                 // ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
               >;
-              sensor-bindings = <&rot_kp C_BRI_UP	C_BRI_DN>;
+              sensor-bindings = <&rot_kp C_BRI_DN	C_BRI_UP>;
             };
         };
 };

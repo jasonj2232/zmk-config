@@ -154,13 +154,5 @@
               >;
               sensor-bindings = <&rot_kp C_BRI_DN	C_BRI_UP>;
             };
-
-            extra1 {
-              status = "reserved";
-            };
-
-            extra2 {
-                status = "reserved";
-            };
         };
 };
